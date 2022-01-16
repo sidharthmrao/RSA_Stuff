@@ -1,29 +1,11 @@
 import math
 import keygen
-
-plaintext = int(input("Enter the message (integer) to be encrypted: "))
  
-p, q, n, totient, e = keygen.primesgen()
-
-def encrypt(plaintext):
-    ciph = pow(plaintext, e , p*q)
-    return ciph # ciph = (plaintext)^e % n
-
-def decrypt(ciphertext):
-    # phin = (p-1)*(q-1)
-    # d = pow(e, -1, phin)
-    # final = pow(ciphertext,d,n)
-    # return final % n  
-    d=pow(e,-1,(p-1)*(q-1))
-    return pow(ciphertext,d,n)   
-
-print("Original Plaintext Message is: ", plaintext)
-
-ciph = encrypt(plaintext)
-print(ciph)
-
-decrypted = decrypt(ciph)
-
-print("decrypted: " + str(decrypted))
-
-#source code shamelessly stolen from https://www.pythonpool.com/rsa-encryption-python/
+def generate(length=1024):
+    p,q,n,t,e,d = keygen.keygen(length)
+    return n,e,d
+def encrypt(plaintext, e, n):
+    encrypted = pow(plaintext, e , n)
+    return encrypted
+def decrypt(ciphertext, d, n):
+    return pow(ciphertext, d, n)   
