@@ -1,3 +1,4 @@
+from msilib import datasizemask
 import random
 def rabinMiller(num):
    s = num - 1
@@ -42,6 +43,11 @@ def generateLargePrime(keysize = 1024):
       num = random.randrange(2**(keysize-1), 2**(keysize))
       if isPrime(num):
          return num
-
-p = generateLargePrime(1024)
-print(p)
+def keygen(length=1024):
+    p = generateLargePrime(length)
+    q = generateLargePrime(length)
+    n = p * q
+    totient = (p-1) * (q-1)
+    e = 65537
+    d=pow(e,-1,(p-1)*(q-1))
+    return p,q,n,totient,e,d

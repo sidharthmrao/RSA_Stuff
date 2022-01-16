@@ -1,15 +1,12 @@
 import math
- 
+import keygen
+
 plaintext = int(input("Enter the message (integer) to be encrypted: "))
  
-p = 101
-q = 79
-e = 11
- 
-n = p*q
- 
+p, q, n, totient, e = keygen.primesgen()
+
 def encrypt(plaintext):
-    ciph = pow(plaintext, e, p*q)
+    ciph = pow(plaintext, e , p*q)
     return ciph # ciph = (plaintext)^e % n
 
 def decrypt(ciphertext):
