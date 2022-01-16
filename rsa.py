@@ -1,4 +1,6 @@
 import math
+import keygen
+
  
 plaintext = int(input("Enter the message (integer) to be encrypted: "))
  
@@ -30,3 +32,14 @@ decrypted = decrypt(ciph)
 print("decrypted: " + str(decrypted))
 
 #source code shamelessly stolen from https://www.pythonpool.com/rsa-encryption-python/
+ 
+def generate(length=1024):
+    p,q,n,t,e,d = keygen.keygen(length)
+    return n,e,d
+def encrypt(plaintext, e, n):
+    encrypted = pow(plaintext, e , n)
+    return encrypted
+def decrypt(ciphertext, d, n):
+    return pow(ciphertext, d, n)   
+
+
