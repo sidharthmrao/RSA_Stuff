@@ -10,7 +10,6 @@ n = p*q
  
 def encrypt(plaintext):
     ciph = pow(plaintext, e, p*q)
-    print(ciph)
     return ciph # ciph = (plaintext)^e % n
 
 def decrypt(ciphertext):
@@ -18,12 +17,14 @@ def decrypt(ciphertext):
     # d = pow(e, -1, phin)
     # final = pow(ciphertext,d,n)
     # return final % n  
-
-    return pow(ciphertext,pow(e,-1,(p-1)*(q-1)),n)   
+    d=pow(e,-1,(p-1)*(q-1))
+    return pow(ciphertext,d,n)   
 
 print("Original Plaintext Message is: ", plaintext)
 
 ciph = encrypt(plaintext)
+print(ciph)
+
 decrypted = decrypt(ciph)
 
 print("decrypted: " + str(decrypted))
