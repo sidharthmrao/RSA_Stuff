@@ -11,7 +11,7 @@ def rabinMiller(num):
       if v != 1:
          i = 0
          while v != (num - 1):
-            if i == t - 1:
+            if i == t - 1: # in theory you'll have to square t-1 times to get to -1, (squaring another time gives 1)
                return False
             else:
                i = i + 1
