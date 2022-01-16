@@ -8,9 +8,13 @@ def generate(length=1024):
     return n,e,d
 
 def encrypt(plaintext):
+    plaintext = plaintext.replace("\n","").replace(" ","").replace("-","").replace("_","").replace(".","").replace(",","").replace("'","").replace("?","").replace("!", "")
     plain = ""
     for character in plaintext:
-        plain += str(ord(character))
+        if len(str(ord(character))) == 2:
+            plain+=str(ord(character))
+        else:
+            plain += str(ord(character))
     plain = int(plain)
     with open('values.txt',"r") as f:
         ned = f.readlines()
@@ -27,10 +31,13 @@ def decrypt(ciphertext):
         e = int(ned[1].replace("\n",""))
         d = int(ned[2].replace("\n",""))
     decrypted = pow(ciphertext, d, n)
-    plain = bytes.fromhex(hex(decrypted)[2:])
-    print(plain)
-    return plain
+    plain = [(str(decrypted)[i:i+3]) for i in range(0, len(str(decrypted)), 3)]
+    out = ""
+    for i in plain:
+        out+=chr(int(i))
+    print(out)
+    return out
 
-a = encrypt("hello")
+a = encrypt("sir-this-is-a-test")
 print(a)
 b = decrypt(a)
