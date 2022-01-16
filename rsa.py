@@ -4,7 +4,7 @@ plaintext = int(input("Enter the message (integer) to be encrypted: "))
  
 p = 101
 q = 79
-e = 11
+e = 65537
  
 n = p*q
  
